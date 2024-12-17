@@ -105,14 +105,15 @@ public class CameraPreview extends Plugin implements CameraActivity.CameraPrevie
         snapshotCallbackId = call.getCallbackId();
 
         Integer quality = call.getInt("quality", 85);
-        
+
         // Remove autoFocus then set new focus mode
         // Best for scanner used
         Camera camera = fragment.getCamera();
         Camera.Parameters parameters = camera.getParameters();
         camera.cancelAutoFocus();
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
-
+        
+        fragment.autoFocus(android.hardware.Camera.AutoFocusCallback)
         fragment.setCameraParameters(parameters);
         fragment.takeSnapshot(quality);
     }
